@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Go Fish!</title>
+	<script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery.mobile.custom.js"></script>
+    <script src="js/Deck.js"></script>
+    <style src="css/style.css"></style>
+    <style>
+        #redBox {
+            position:relative;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            top:100px;
+            left:200px;
+            cursor:pointer;
+        }
+        .blueBox {
+            position:relative;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            top:100px;
+            left:500px;
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+	<div id="redBox"></div>
+    <script>
+        var newObj = new Object();
+        newObj.element = $("#redBox");
+        newObj.element.on("tap", function(){console.log("yepper.");});
+        console.log(newObj.element);
+
+
+
+
+
+    </script>
+</body>
+</html>
