@@ -37,6 +37,13 @@ function Deck (style) {
         _deck = temp;//transfer the temp array back into _deck now that _deck is empty
     }
 
+    this.dealCard = function () {
+        var deltCard =_deck.splice(0, 1)[0];
+        //document.body.appendChild(deltCard.getElement());
+        //add parameter "destination" to incorporate destination of card once delt. ex: player hand, or draw pile
+
+    }
+
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
         var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
@@ -113,5 +120,9 @@ function Deck (style) {
         this.getSimple = function () {
             return _name;
         }
-    }   
+        this.getElement = function () {
+            return _element;
+        }
+    }  
+    //End of Card Class//
 }
