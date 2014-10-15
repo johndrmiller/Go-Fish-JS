@@ -1,10 +1,17 @@
 function Deck (style) {
     //style options for decks are "standard" and "euchre" more to come in the future
+<<<<<<< HEAD
 
     var _deck=[],//Array: the actual deck of cards
 	    _style = style || "standard", //String: type of deck. Standard 52 is "default"
 	    _suits = ["H", "S", "D", "C"],//Array
 	    _values;//Array: A list of the card values within the deck based on value of _style
+=======
+    var _deck=[],//The final build of te deck
+	    _style = style || "standard", //type of deck. Standard 52 is "default"
+	    _suits = ["H", "S", "D", "C"],//Standard card suits "H"= Hearts, "S"= Spades, "D"= Diamonds, "C"= Clubs
+	    _values,//A list of the card values within the deck based on value of _style
+>>>>>>> origin/master
     switch (_style) { //using switch statement for future implementations with more deck style options
         case "euchre":
             _values = ["9", "10", "J", "Q", "K", "A"];
@@ -40,6 +47,7 @@ function Deck (style) {
 
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
+<<<<<<< HEAD
         var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
             _displayName,//String: The display name of the card
             _element,//HTML <div>: The div that will hold the card's image
@@ -47,6 +55,15 @@ function Deck (style) {
             _name,//String: The short name of the card for reference behind the scenes
             _suit,//String: The suit of the card, not abbreviated
             _value;//Number: The value of the card
+=======
+        var _cardImage,//the 'img' tag that will hold the card's png file
+            _displayName,//The display name of the card
+            _element,//The div that will hold the card's image
+            _imageFile,//The Image file associated with the card ** Make image css background?
+            _name,//The short name of the card for reference behind the scenes
+            _suit,//The suit of the card, not abbreviated
+            _value;//The value of the card (as Number)
+>>>>>>> origin/master
         switch (suit) {
             case "H":
                 _suit = "Hearts";
@@ -92,11 +109,18 @@ function Deck (style) {
         _imageFile = _name + ".png";
         //create a corresponding element for each card created
         _element = document.createElement('div');
+<<<<<<< HEAD
         _element.setAttribute("id", _name);
         _cardImage=document.createElement("img");
         _cardImage.setAttribute("src", "images/cardpng/"+_imageFile);
         _element.appendChild(_cardImage);
         
+=======
+        _element.setAttribute("id")=_name;
+        _cardImage=document.createElement("img");
+        _cardImage.setAttribute("src")= "images/cardpng/"+_imageFile;
+        _element.appendChild(_cardImage);
+>>>>>>> origin/master
         //these are the methods to get all of the values
         this.getSuit = function () {
             return _suit;
