@@ -1,3 +1,23 @@
 /*will need to define media queries at several break points and test values
         so that elements at different viewport sizes can be rendered as 
         appropriately as possible*/
+
+@media (min-width: 300px) {
+    body {
+        background-color:blue;
+    }
+}
+
+
+@media (min-width: 500px) {
+    body {
+        background-color:orange;
+    }
+}
+
+@media (min-width: 700px) {
+    body {
+        background-color:green;
+    }
+}
+

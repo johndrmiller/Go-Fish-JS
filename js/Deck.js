@@ -1,11 +1,10 @@
-//need to add html parts to Card class and figure out how to reference them via the html
-//add "id" and "class" as properties of card class, or recreate card as <div> with properties built in?
 function Deck (style) {
     //style options for decks are "standard" and "euchre" more to come in the future
-    var _deck=[],//The final build of te deck
-	    _style = style || "standard", //type of deck. Standard 52 is "default"
-	    _suits = ["H", "S", "D", "C"],//Standard card suits "H"= Hearts, "S"= Spades, "D"= Diamonds, "C"= Clubs
-	    _values,//A list of the card values within the deck based on value of _style
+
+    var _deck=[],//Array: the actual deck of cards
+	    _style = style || "standard", //String: type of deck. Standard 52 is "default"
+	    _suits = ["H", "S", "D", "C"],//Array
+	    _values;//Array: A list of the card values within the deck based on value of _style
     switch (_style) { //using switch statement for future implementations with more deck style options
         case "euchre":
             _values = ["9", "10", "J", "Q", "K", "A"];
@@ -17,38 +16,37 @@ function Deck (style) {
        	    throw "I'm not familiar with that type of deck."
     }
 
-    for (val in _suits) {
+    for (val in _suits) {//runs the creation of the deck's cards and adds them to the "_deck" array
         for (var i = 0; i<_values.length; i++) {
-            var _card = new Card(_suits[val], _values[i]);//create cards
-            _deck.push(_card);//add them to the deck
+            var _card = new Card(_suits[val], _values[i]);//class Card: creates "Card" objects, see below (approx. line 40)
+            _deck.push(_card);//add card to the deck 
         }
     }
    
     //Deck methods: shuffle,
     this.shuffle = function () {
-        var places = [],//array that will hold the indexes to be pulled from the original deck
-            temp = [];//the temporary array for holding the shuffeled deck
+        var places = [],//Array: array that will hold the indexes to be pulled from the original deck's length
+            temp = [];//Array: the temporary array for holding the shuffeled deck
         for (var i = 0; i < _deck.length; i++) {
             places.push(i);
         }
         while (_deck.length > 0 ) {
-            var ranIndex = Math.floor(Math.random()*places.length);
-            temp.push(_deck.splice(ranIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here instead of later
-            places.splice(ranIndex,1);
+            var ranIndex = Math.floor(Math.random()*places.length);//picks a random value from the available options in the place array
+            temp.push(_deck.splice(ranIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
+            places.splice(ranIndex,1);//removing the selected index from the array so it doesn't get chosen again
         }
-        _deck = temp;//transfer the temp array back into _deck now that it is empty
-        //_deck.forEach(function (element, index, array) {console.log(element.getName());});
+        _deck = temp;//transfer the temp array back into _deck now that _deck is empty
     }
 
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
-        var _cardImage,//the 'img' tag that will hold the card's png file
-            _displayName,//The display name of the card
-            _element,//The div that will hold the card's image
-            _imageFile,//The Image file associated with the card ** Make image css background?
-            _name,//The short name of the card for reference behind the scenes
-            _suit,//The suit of the card, not abbreviated
-            _value;//The value of the card (as Number)
+        var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
+            _displayName,//String: The display name of the card
+            _element,//HTML <div>: The div that will hold the card's image
+            _imageFile,//String (png file name/path): The Image file associated with the card ** Make image css background?
+            _name,//String: The short name of the card for reference behind the scenes
+            _suit,//String: The suit of the card, not abbreviated
+            _value;//Number: The value of the card
         switch (suit) {
             case "H":
                 _suit = "Hearts";
@@ -94,10 +92,11 @@ function Deck (style) {
         _imageFile = _name + ".png";
         //create a corresponding element for each card created
         _element = document.createElement('div');
-        _element.setAttribute("id")=_name;
+        _element.setAttribute("id", _name);
         _cardImage=document.createElement("img");
-        _cardImage.setAttribute("src")= "images/cardpng/"+_imageFile;
+        _cardImage.setAttribute("src", "images/cardpng/"+_imageFile);
         _element.appendChild(_cardImage);
+        
         //these are the methods to get all of the values
         this.getSuit = function () {
             return _suit;
