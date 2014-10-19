@@ -22,26 +22,25 @@ function Deck (style) {
         }
     }
    
-    //Deck methods: shuffle,
+    //Deck methods: shuffle, seeDeck, dealCard
     this.shuffle = function () {
-        var places = [],//Array: array that will hold the indexes to be pulled from the original deck's length
-            temp = [];//Array: the temporary array for holding the shuffeled deck
-        for (var i = 0; i < _deck.length; i++) {
-            places.push(i);
-        }
-        while (_deck.length > 0 ) {
-            var ranIndex = Math.floor(Math.random()*places.length);//picks a random value from the available options in the place array
-            temp.push(_deck.splice(ranIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
-            places.splice(ranIndex,1);//removing the selected index from the array so it doesn't get chosen again
+        var temp = [];//Array: the temporary array for holding the shuffeled deck
+        while ( _deck.length > 0 ) {
+            var randomIndex = Math.floor(Math.random()*_deck.length);//picks a random value from the available options in the places array
+            temp.push(_deck.splice(randomIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
         }
         _deck = temp;//transfer the temp array back into _deck now that _deck is empty
     }
+    this.seeDeck = function () {//outputs the names of the cards currently in the deck (for behind the scenes only)
+        var cardnames =[];
+        for (var i=0; i< _deck.length;i++) {
+            cardnames.push(_deck[i].getName());
+        }
+        console.log(cardnames);
+    }
 
-    this.dealCard = function () {
-        var deltCard =_deck.splice(0, 1)[0];
-        //document.body.appendChild(deltCard.getElement());
-        //add parameter "destination" to incorporate destination of card once delt. ex: player hand, or draw pile
-
+    this.dealCard = function () {//returns the first card in the deck
+        return _deck.splice(0, 1)[0];
     }
 
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
