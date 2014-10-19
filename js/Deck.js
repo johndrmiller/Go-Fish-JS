@@ -22,14 +22,12 @@ function Deck (style) {
         }
     }
    
-    //Deck methods: shuffle, seeDeck, dealCard
-    this.shuffle = function () {
-        var temp = [];//Array: the temporary array for holding the shuffeled deck
-        while ( _deck.length > 0 ) {
-            var randomIndex = Math.floor(Math.random()*_deck.length);//picks a random value from the available options in the places array
-            temp.push(_deck.splice(randomIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
-        }
-        _deck = temp;//transfer the temp array back into _deck now that _deck is empty
+    //Deck methods: dealCard, deckSize, seeDeck, shuffle
+    this.dealCard = function () {//returns the first card in the deck
+        return _deck.splice(0, 1)[0];
+    }
+    this.deckSize = function () {//returns number of cards currently in "_deck"
+        return _deck.length;
     }
     this.seeDeck = function () {//outputs the names of the cards currently in the deck (for behind the scenes only)
         var cardnames =[];
@@ -38,11 +36,15 @@ function Deck (style) {
         }
         console.log(cardnames);
     }
-
-    this.dealCard = function () {//returns the first card in the deck
-        return _deck.splice(0, 1)[0];
+    this.shuffle = function () {
+        var temp = [];//Array: the temporary array for holding the shuffeled deck
+        while ( _deck.length > 0 ) {
+            var randomIndex = Math.floor(Math.random()*_deck.length);//picks a random value from the available options in the places array
+            temp.push(_deck.splice(randomIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
+        }
+        _deck = temp;//transfer the temp array back into _deck now that _deck is empty
     }
-
+    
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
         var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
@@ -125,3 +127,4 @@ function Deck (style) {
     }  
     //End of Card Class//
 }
+//End of Deck Class//
