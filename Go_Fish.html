@@ -4,21 +4,22 @@
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Go Fish!</title>
-	<script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery-1.11.1.js"></script>
     <script src="js/jquery.mobile.custom.js"></script>
+    <script>
+    $(document).ready(function(){console.log("okay");});
+    </script>
     <!--Elements needed:
-        Deck,
-          Cards,
+        --Deck--,
+          --Cards--,
         Player (2),
           Hand,
           Pair Pile,
         Game,
           Draw Pile
-
-
-
-     -->
+    -->
     <script src="js/Deck.js"></script>
+    <script src="js/Player.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css"></link>
     <style>
         #redBox {
@@ -27,7 +28,7 @@
             height: 100px;
             background-color: red;
             top:100px;
-            left:200px;
+            left:100px;
             cursor:pointer;
         }
         .blueBox {
@@ -36,7 +37,7 @@
             height: 100px;
             background-color: blue;
             top:100px;
-            left:500px;
+            left:100px;
             cursor:pointer;
         }
     </style>
@@ -46,7 +47,7 @@
     <script>
         var newObj = new Object();
         newObj.element = $("#redBox");
-        newObj.element.on("tap", function(){console.log("yepper.");});
+        newObj.element.on("tap", function(){$(this).animate({left: "+=50"});});
         console.log(newObj.element);
 
 
