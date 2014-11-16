@@ -6,9 +6,6 @@
 	<title>Go Fish!</title>
     <script src="js/jquery-1.11.1.js"></script>
     <script src="js/jquery.mobile.custom.js"></script>
-    <script>
-    $(document).ready(function(){console.log("okay");});
-    </script>
     <!--Elements needed:
         --Deck--,
           --Cards--,
@@ -18,42 +15,27 @@
         Game,
           Draw Pile
     -->
-    <script src="js/Deck.js"></script>
-    <script src="js/Player.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="css/style.css"></link>
     <style>
-        #redBox {
-            position:relative;
-            width: 100px;
-            height: 100px;
+        redBox {
+            width:100px;
+            height:100px;
             background-color: red;
-            top:100px;
-            left:100px;
-            cursor:pointer;
-        }
-        .blueBox {
-            position:relative;
-            width: 100px;
-            height: 100px;
-            background-color: blue;
-            top:100px;
-            left:100px;
-            cursor:pointer;
         }
     </style>
 </head>
 <body>
 	<div id="redBox"></div>
+    <script src="js/Game.js"></script><!--Load all images first in this script-->
+    <script src="js/Deck.js"></script>
+    <script src="js/Player.js"></script>
     <script>
-        var newObj = new Object();
-        newObj.element = $("#redBox");
-        newObj.element.on("tap", function(){$(this).animate({left: "+=50"});});
-        console.log(newObj.element);
-
-
-
-
-
+         // var newObj = new Object();
+       // newObj.element = $("#redBox");
+        //newObj.element.on("tap", function(){$(this).animate({left: "+=50"});});
+        //console.log(newObj.element);
+       // $(document).ready(beginGame()); //Use document ready to begin sequence in game js
     </script>
 </body>
 </html>

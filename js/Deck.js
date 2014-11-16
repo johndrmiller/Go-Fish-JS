@@ -1,7 +1,8 @@
-function Deck (style) {
+function Deck ( origin, style) {
     //style options for decks are "standard" and "euchre" more to come in the future
     var _deck=[],//Array: the actual deck of cards
-	    _style = style || "standard", //String: type of deck. Standard 52 is "default"
+	    _origin=origin || [0,0],//Array: two values, an "x" and a "y" coordinate, the location on the screen from which the delt cards appear
+        _style = style || "standard", //String: type of deck. Standard 52 is "default"
 	    _suits = ["H", "S", "D", "C"],//Array
 	    _values;//Array: A list of the card values within the deck based on value of _style
     switch (_style) { //using switch statement for future implementations with more deck style options
@@ -25,6 +26,7 @@ function Deck (style) {
     //Deck methods: dealCard, deckSize, seeDeck, shuffle
     this.dealCard = function () {//returns the first card in the deck
         return _deck.splice(0, 1)[0];
+        //create animation for cards going to hands and pile
     }
     this.deckSize = function () {//returns number of cards currently in "_deck"
         return _deck.length;

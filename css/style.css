@@ -3,31 +3,41 @@
         appropriately as possible*/
 
 body {
-    marign: 0 auto;
     width:100%;
+  /*  background: #000000 url(../images/2560_bg.jpg) no-repeat center top;
+    margin:0 auto; */
 }
 @media (max-width: 1920px) {
     body {
-        background: #000000 url(../images/bg_1920.jpg) no-repeat center top;
+        background: #000000 url(../images/1920_bg.png) no-repeat center top;
+        margin:0 auto;
     }
 }
 @media (max-width: 1280px) {
     body {
-        background: #000000 url(../images/bg_1280.jpg) no-repeat center top;
+        background: #000000 url(../images/1280_bg.png) no-repeat center top;
+        margin:0 auto;
+
     }
 }
-@media (max-width: 800px) {
+@media (max-width: 960px) {
     body {
-        background: #000000 url(../images/bg_800.jpg) no-repeat center top;
+        background: #000000 url(../images/960_bg.png) no-repeat center top;
+        margin:0 auto;
+
+    }
+}
+@media (max-width: 640px) {
+    body {
+        background: #000000 url(../images/640_bg.png) no-repeat center top;
+        margin:0 auto;
+
     }
 }
 @media (max-width: 480px) {
     body {
-        background: #000000 url(../images/bg_480.jpg) no-repeat center top;
+        background: #000000 url(../images/480_bg.png) no-repeat center top;
+        margin:0 auto;
+
     }
 }
-
-
-
-
-
