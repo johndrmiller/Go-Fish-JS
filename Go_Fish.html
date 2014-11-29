@@ -18,15 +18,32 @@
     
     <link rel="stylesheet" type="text/css" href="css/style.css"></link>
     <style>
-        redBox {
-            width:100px;
-            height:100px;
-            background-color: red;
+        #title_gap {
+            display:block;
+            height:5%;
+        }
+        #titleGraphic {
+            /*position:relative;*/
+            display:block;
+            width: 30%;
+            margin: 0 auto;
+        }
+            #titleGraphic img {
+                width:100%;
+            }
+        #optionsButton {
+            display: block;
+            margin: 0 auto;
+            width:auto;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-	<div id="redBox"></div>
+	<div id="title_gap"></div>
+    <div id="titleGraphic"><img src="images/title_test.png" alt=""></div>
+    <div id="optionsButton">Options</div>
+    <div id=""></div>
     <script src="js/Game.js"></script><!--Load all images first in this script-->
     <script src="js/Deck.js"></script>
     <script src="js/Player.js"></script>
