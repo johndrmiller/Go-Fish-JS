@@ -24,8 +24,9 @@ function Deck ( origin, style) {
     }
    
     //Deck methods: dealCard, deckSize, seeDeck, shuffle
-    this.dealCard = function () {//returns the first card in the deck
-        return _deck.splice(0, 1)[0];
+    this.dealCard = function (player) {//returns the first card in the deck
+        var p = player;
+        p.addToHand(_deck.splice(0, 1)[0]);
         //create animation for cards going to hands and pile
     }
     this.deckSize = function () {//returns number of cards currently in "_deck"
