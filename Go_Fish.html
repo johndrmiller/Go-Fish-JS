@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Go Fish!</title>
+    <script src="js/jquery-1.11.1.js"></script>
+    <script src="js/jquery.mobile.custom.js"></script>
+    <!--Elements needed:
+        --Deck--,
+          --Cards--,
+        Player (2),
+          Hand,
+          Pair Pile,
+        Game,
+          Draw Pile
+    -->
+    
+    <link rel="stylesheet" type="text/css" href="css/style.css"></link>
+    <style>
+        @font-face {
+            font-family: Rosewood;
+            src: url(fonts/RosewoodStd-Regular.otf);
+        }
+        #title_gap {
+            display:block;
+            height:5%;
+        }
+        #titleGraphic {
+            /*position:relative;*/
+            display:block;
+            width: 30%;
+            margin: 0 auto;
+        }
+            #titleGraphic img {
+                width:100%;
+            }
+        #optionsButton {
+            font-family:Rosewood;
+            font-size: 3em;
+            display: block;
+            margin: 10% auto;
+            width:auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+	<div id="title_gap"></div>
+    <div id="titleGraphic"><img src="images/title_test.png" alt=""></div>
+    <div id="optionsButton">Options</div>
+    <div id=""></div>
+    <script src="js/Game.js"></script><!--Load all images first in this script-->
+    <script src="js/Deck.js"></script>
+    <script src="js/Player.js"></script>
+    <script>
+         // var newObj = new Object();
+       // newObj.element = $("#redBox");
+        //newObj.element.on("tap", function(){$(this).animate({left: "+=50"});});
+        //console.log(newObj.element);
+       // $(document).ready(beginGame()); //Use document ready to begin sequence in game js
+    </script>
+</body>
+</html>
