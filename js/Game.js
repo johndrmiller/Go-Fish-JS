@@ -17,6 +17,4 @@ function Game(options) {
     }
 
     _deck.shuffle();
-
-    
 }

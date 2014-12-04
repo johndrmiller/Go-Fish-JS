@@ -65,6 +65,7 @@ function Computer(difficulty) {
             removeFromMemory(c);
         }
     }
+
     this.getMemory = function() {
         return _memory
     }
