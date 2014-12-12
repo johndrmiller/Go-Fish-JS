@@ -109,24 +109,15 @@ function Deck ( origin, style) {
         _element.appendChild(_cardImage);
 
         //these are the methods to get all of the values
-        this.getSuit = function () {
-            return _suit;
+        function getProperty(property) {
+        	return property
         }
-        this.getValue = function () {
-            return _value;
-        }
-        this.getName = function () {
-            return _displayName;
-        }
-        this.getImage = function () {
-            return _imageFile;
-        }
-        this.getSimple = function () {
-            return _name;
-        }
-        this.getElement = function () {
-            return _element;
-        }
+        this.getSuit = getProperty(_suit);
+        this.getValue = getProperty(_value);
+        this.getName = getProperty(_displayName);
+        this.getName = getProperty(_imageFile);
+        this.getName = getProperty(_name);
+        this.getName = getProperty(_element);
     }  
     //End of Card Class//
 }
