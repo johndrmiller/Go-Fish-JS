@@ -47,7 +47,7 @@ function Deck ( origin, style) {
         }
         _deck = temp;//transfer the temp array back into _deck now that _deck is empty
     }
-    
+    this.getDeck = function(){return _deck};
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
         var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
@@ -109,15 +109,12 @@ function Deck ( origin, style) {
         _element.appendChild(_cardImage);
 
         //these are the methods to get all of the values
-        function getProperty(property) {
-        	return property
-        }
-        this.getSuit = getProperty(_suit);
-        this.getValue = getProperty(_value);
-        this.getName = getProperty(_displayName);
-        this.getName = getProperty(_imageFile);
-        this.getName = getProperty(_name);
-        this.getName = getProperty(_element);
+        this.getSuit = function () {return _suit};
+        this.getValue = function () {return _value};
+        this.getName = function () {return _displayName};
+        this.getImage = function () {return _imageFile};
+        this.getSimple = function () {return _name};
+        this.getElement = function () {return _element};
     }  
     //End of Card Class//
 }
