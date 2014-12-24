@@ -1,6 +1,7 @@
 function Deck ( origin, style) {
     //style options for decks are "standard" and "euchre" more to come in the future
-    var _deck=[],//Array: the actual deck of cards
+    var _cardObjects={},//Object: the actual deck of cards
+        _cardList = [],//Array: reference to context of cards, all functions will effect this list and "cardObjeccts" will only be affected when cards are added or removed
 	    _origin=origin || [0,0],//Array: two values, an "x" and a "y" coordinate, the location on the screen from which the delt cards appear
         _style = style || "standard", //String: type of deck. Standard 52 is "default"
 	    _suits = ["H", "S", "D", "C"],//Array
@@ -18,36 +19,58 @@ function Deck ( origin, style) {
 
     for (val in _suits) {//runs the creation of the deck's cards and adds them to the "_deck" array
         for (var i = 0; i<_values.length; i++) {
-            var _card = new Card(_suits[val], _values[i]);//class Card: creates "Card" objects, see below (approx. line 40)
-            _deck.push(_card);//add card to the deck 
+            var newName = _values[i]+_suits[val];
+            _cardObjects[newName] = new Card(_suits[val], _values[i]);//class Card: creates "Card" objects, see below (approx. line 40)
+            _cardList.push(newName);//add card to the deck 
         }
     }
    
     //Deck methods: dealCard, deckSize, seeDeck, shuffle
     this.dealCard = function (player) {//returns the first card in the deck
         var p = player;
-        p.addToHand(_deck.splice(0, 1)[0]);
+        _card = _cardObjects[_cardList[0]];
+        p.addToHand(_card);
+        delete _cardObjects[_cardList[0]];
+        _cardList.splice(0,1);
+
         //create animation for cards going to hands and pile
     }
     this.deckSize = function () {//returns number of cards currently in "_deck"
-        return _deck.length;
+        return _cardList.length;
     }
     this.seeDeck = function () {//outputs the names of the cards currently in the deck (for behind the scenes only)
         var cardnames =[];
-        for (var i=0; i< _deck.length;i++) {
-            cardnames.push(_deck[i].getName());
+        for (var i=0; i< _cardList.length;i++) {
+            cardnames.push(_cardObjects[_cardList[i]].getName());
         }
-        console.log(cardnames);
+        //console.log(cardnames);
+        return cardnames
     }
     this.shuffle = function () {
         var temp = [];//Array: the temporary array for holding the shuffeled deck
-        while ( _deck.length > 0 ) {
-            var randomIndex = Math.floor(Math.random()*_deck.length);//picks a random value from the available options in the places array
-            temp.push(_deck.splice(randomIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
+        while ( _cardList.length > 0 ) {
+            var randomIndex = Math.floor(Math.random()*_cardList.length);//picks a random value from the available options in the places array
+            temp.push(_cardList.splice(randomIndex, 1)[0]);//splice method returns an array so I take the value i need out of the array of 1 here
         }
-        _deck = temp;//transfer the temp array back into _deck now that _deck is empty
+        _cardList = temp;//transfer the temp array back into _deck now that _deck is empty
     }
-    this.getDeck = function(){return _deck};
+    this.getCard = function (ci) {//is this method necessary or even needed? It seems to expose the card.
+        var holder,
+        actual,
+        clone = {};
+        if (typeof ci == "number") {
+            holder = _cardList[ci];
+        } else if (typeof ci == "string") {
+            holder = ci;
+        }
+        actual = _cardObjects[holder];
+        for (var key in actual) {
+            clone[key] = actual[key];
+        }
+        return clone
+    }
+    //this should not be used in the game-- it exposes the deck to the rest of the program
+    //this.getDeck = function(){return _deck};
     //Below is the class for creating cards. I put it within the Deck class because I believe that it should only be accessible from the deck and not open to outside influence
     function Card (suit, value) {
         var _cardImage,//HTML <img>: the 'img' tag that will hold the card's png file
@@ -104,6 +127,7 @@ function Deck ( origin, style) {
         //create a corresponding element for each card created
         _element = document.createElement('div');
         _element.setAttribute("id", _name);
+        _element.setAttribute("class", "card");
         _cardImage=document.createElement("img");
         _cardImage.setAttribute("src", "images/cardpng/"+_imageFile);
         _element.appendChild(_cardImage);

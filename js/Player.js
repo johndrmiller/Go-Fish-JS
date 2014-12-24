@@ -1,6 +1,8 @@
 function Player(){
-        var _hand = [],//Array: the player's hand of cards
-        _matches = [];//Array: the player's match pile
+        var _hand = {},//Object: the player's hand of cards
+        _handList = [],//Array: context of cards in hand
+        _matches = {},//Object: the player's match pile
+        _matchesList = [],//Array: context of cards in match pile
         
         this.initialAnimation = function() {
             //animating the card graphics into the hand from deal
@@ -10,14 +12,24 @@ function Player(){
         }
 
         this.addToHand = function (card) {
-			_hand.push(card);	
+			var _card = card,
+            _cardID = card.getSimple();
+            _hand[_cardID]=_card;
+            _handList.push(_cardID);
         }
         this.removeFromHand = function (card) {
-            var index = _hand.indexOf(card);
-            return _hand.splice(index, 1);
+            var _card = card,
+            _cardID = card.getSimple();
+            delete _hand[_cardID];
+            var index = _handList.indexOf(_cardID);
+            _handList.splice(index, 1);
         }
         this.getHand = function () {
-            return _hand;
+            var _cardList;
+            for (var i=0; i<_handList.length; i++) {
+                _cardList.push(_hand[_handList[i]].getName());
+            }
+            return _cardList;
         }
         this.viewMatches = function () {
             //animate container onto screen and populate it with the player's match pile
@@ -43,7 +55,7 @@ function Player(){
 
 }
 
-function Computer(difficulty) {
+function Computer(difficulty, opponents) {
     var _memory = [],//the computer player's memory
     //length of the computer's memory based on difficulty level
     _memoryLength = difficulty || 7;//"easy"=5,"normal"=7, or "hard"=10
@@ -54,7 +66,7 @@ function Computer(difficulty) {
         _memory.unshift(c);
         if (_memory.length>_memoryLength) {
             var over = _memory.length - _memoryLength;
-            _memory.splice(5,over);
+            _memory.splice(_memoryLength,over);
         }
     }
     this.removeFromMemory = function(card){
